@@ -79,15 +79,15 @@ footer {
     padding: 40px;
 }
 
-.skip {
+.skip-content {
     display: block;
     line-height: 44px;
     padding: 0 20px;
-    margin-top: -40px;
+    margin-top: -44px;
 }
 
-.skip:focus {
-    margin-top: 0;
+.skip-content:focus {
+    margin-top: 0px;
 }
 
 .center {
