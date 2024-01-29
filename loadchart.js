@@ -2,7 +2,7 @@
 var dataSource = {
     datasets: [
         {
-            data: [],
+            data: [25, 275, 110, 75],
             backgroundColor: [
                 '#ffcd56',
                 '#ff6384',
@@ -11,7 +11,7 @@ var dataSource = {
             ]
         }
     ],
-    labels: []
+    labels: ['Utilities', 'Rent', 'Grocery','Eat Out']
 };
 
 function createChart() {
@@ -32,3 +32,5 @@ axios.get('http://localhost:3000/budget')
     }
 });
 }
+
+document.addEventListener('DOMContentLoaded', createChart);
