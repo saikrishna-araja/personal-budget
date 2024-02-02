@@ -18,12 +18,18 @@ const budget = {
             budget: 275
         },
         {
-            title: 'Grocery',
+            title: 'Groceries',
             budget: 110
         },
+        {
+            title: 'Pharmacy',
+            budget: 20
+        }
     ]
 };
 
+app.use('/', express.static('public'))
+app.use(express.static('./'));
 
 app.get('/budget', (req, res) => {
     res.json(budget);
