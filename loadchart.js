@@ -3,15 +3,7 @@ var dataSource = {
     datasets: [
         {
             data: [],
-            backgroundColor: [
-                '#ffcd56',
-                '#ff6384',
-                '#36a2eb',
-                '#fd6b19',
-                'green',
-                'yellow',
-                'peach'
-            ]
+            backgroundColor: []
         }
     ],
     labels: []
@@ -37,11 +29,12 @@ function getBudget() {
     axios.get('http://localhost:3000/budget')
     .then(function (res) {
         for (var i = 0; i < res.data.myBudget.length; i++) {
-            dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
             dataSource.labels[i] = res.data.myBudget[i].title;
+			dataSource.datasets[0].data[i] = res.data.myBudget[i].relatedvalue;
+            dataSource.datasets[0].backgroundColor[i] = res.data.myBudget[i].color;
 
             var budgetItem = {
-                value: res.data.myBudget[i].budget,
+                value: res.data.myBudget[i].relatedvalue,
                 label: res.data.myBudget[i].title
             };
             // Add the created object to the array
@@ -95,7 +88,7 @@ function createDonutChart(data) {
 
     var color = d3.scale.ordinal()
         .domain(data.map(d => d.label))
-        .range(["#fd6b19", "#8a89a6", "#b96988", "#6b486b", "#a15d56", "#a0743c", "#ff8400"]);
+        .range(this.dataSource.datasets[0].backgroundColor);
 
 	/* ------- PIE SLICES -------*/
 	var slice = svg.select(".slices").selectAll("path.slice")
